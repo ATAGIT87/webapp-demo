@@ -22,7 +22,7 @@
       const password = document.getElementById('password').value;
       const responseElem = document.getElementById('response');
       try {
-        const res = await fetch("https://backend-mn3f.onrender.com/api/auth/signin", {
+        const res = await fetch("https://backend-mn3f.onrender.com/api/auth/signup", {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ username, password })
