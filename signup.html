@@ -22,7 +22,7 @@
       const password = document.getElementById('password').value;
       const responseElem = document.getElementById('response');
       try {
-        const res = await fetch('http://192.168.178.35:4000/api/auth/signup', {
+        const res = await fetch('http:/api/auth/signup', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ username, password })
