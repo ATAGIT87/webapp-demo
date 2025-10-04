@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Realtime Chat</title>
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+<body>
+  <h1>Realtime Chat</h1>
+
+  <div id="chat-box" style="border:1px solid #ccc; width:300px; height:200px; overflow:auto;"></div>
+  <br>
+  <input id="msg" type="text" placeholder="Type a message..." />
+  <button id="sendBtn">Send</button>
+
+  <script>
+    const socket = io("https://backend-mn3f.onrender.com"); // آدرس backend خودت
+
+    const chatBox = document.getElementById('chat-box');
+    const msgInput = document.getElementById('msg');
+    const sendBtn = document.getElementById('sendBtn');
+
+    // وقتی پیام جدیدی از سرور می‌رسد
+    socket.on('chatMessage', (msg) => {
+      const p = document.createElement('p');
+      p.textContent = msg;
+      chatBox.appendChild(p);
+    });
+
+    // وقتی کاربر پیام می‌فرستد
+    sendBtn.addEventListener('click', () => {
+      const msg = msgInput.value.trim();
+      if (msg) {
+        socket.emit('chatMessage', msg);
+        msgInput.value = '';
+      }
+    });
+  </script>
+</body>
+</html>
