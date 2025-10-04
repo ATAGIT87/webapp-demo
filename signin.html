@@ -118,12 +118,10 @@
 
     <p>Don't have an account? <a href="signup.html">Sign up here</a></p>
 
-    <pre id="response"></pre>
   </div>
 
   <script>
     const form = document.getElementById('signinForm');
-    const responseElem = document.getElementById('response');
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -141,7 +139,6 @@
 
         if (res.ok) {
        
-          responseElem.textContent = JSON.stringify(data, null, 2);
           localStorage.setItem('username', username);
 
           setTimeout(() => {
