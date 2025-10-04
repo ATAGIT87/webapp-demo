@@ -6,48 +6,60 @@
 </head>
 <body>
   <h1>Signin Form</h1>
+
   <form id="signinForm">
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" required><br><br>
+
     <label for="password">Password:</label>
     <input type="password" id="password" name="password" required><br><br>
+
     <button type="submit">Sign In</button>
   </form>
 
- <p>Don't have an account? 
+  <p>
+    Don't have an account?
     <a href="signup.html">Sign up here</a>
   </p>
-  
+
   <h2>Response:</h2>
   <pre id="response"></pre>
 
- <script type="module">
-  import { AuthenticationService } from './api/services/AuthenticationService.js';
-  import { OpenAPI } from './api/core/OpenAPI.js';
+  <script>
+    const form = document.getElementById('signinForm');
+    const responseElem = document.getElementById('response');
 
-  OpenAPI.BASE = 'https://backend-mn3f.onrender.com';
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
 
-  const form = document.getElementById('signinForm');
-  const responseElem = document.getElementById('response');
+      try {
+        const res = await fetch('https://backend-mn3f.onrender.com/api/auth/signin', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+        const data = await res.json();
 
-    try {
-      const res = await AuthenticationService.postApiAuthSignin({ username, password });
-      responseElem.textContent = JSON.stringify(res, null, 2);
+        if (res.ok) {
+          // ✅ نمایش پاسخ و ذخیره‌ی نام کاربر
+          responseElem.textContent = JSON.stringify(data, null, 2);
+          localStorage.setItem('username', username);
 
-      // ✅ ذخیره نام کاربر در localStorage
-      localStorage.setItem('username', username);
-
-      // ✅ انتقال به صفحه چت
-      window.location.href = 'chat.html';
-    } catch (err) {
-      responseElem.textContent = 'Error: ' + JSON.stringify(err, null, 2);
-    }
-  });
-</script>
+          // ✅ هدایت به صفحه‌ی چت
+          setTimeout(() => {
+            window.location.href = 'chat.html';
+          }, 1000);
+        } else {
+          // خطا از سمت سرور
+          responseElem.textContent = `Error ${res.status}: ${data.message || 'Signin failed'}`;
+        }
+      } catch (err) {
+        responseElem.textContent = 'Network error: ' + err;
+      }
+    });
+  </script>
 </body>
 </html>
