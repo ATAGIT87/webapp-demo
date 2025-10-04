@@ -147,6 +147,10 @@
       p.innerHTML = `<strong>${msgObj.username}:</strong> ${msgObj.text}`;
       chatBox.appendChild(p);
     });
+     logoutBtn.addEventListener('click', () => {
+      localStorage.removeItem('username');
+      window.location.href = 'signin.html';
+    });
   </script>
 </body>
 </html>
