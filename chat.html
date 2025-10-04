@@ -14,26 +14,33 @@
   <button id="sendBtn">Send</button>
 
   <script>
-    const socket = io("https://backend-mn3f.onrender.com"); // آدرس backend خودت
+    const username = localStorage.getItem('username');
+
+    if (!username) {
+      alert('Please sign in first!');
+      window.location.href = 'signin.html';
+    }
+
+    const socket = io("https://backend-mn3f.onrender.com");
 
     const chatBox = document.getElementById('chat-box');
     const msgInput = document.getElementById('msg');
     const sendBtn = document.getElementById('sendBtn');
 
-    // وقتی پیام جدیدی از سرور می‌رسد
-    socket.on('chatMessage', (msg) => {
-      const p = document.createElement('p');
-      p.textContent = msg;
-      chatBox.appendChild(p);
-    });
-
-    // وقتی کاربر پیام می‌فرستد
+    // 📡 وقتی کاربر پیام می‌فرستد
     sendBtn.addEventListener('click', () => {
       const msg = msgInput.value.trim();
       if (msg) {
-        socket.emit('chatMessage', msg);
+        socket.emit('chatMessage', { username, text: msg });
         msgInput.value = '';
       }
+    });
+
+    // 💬 وقتی از سرور پیام دریافت می‌کنیم
+    socket.on('chatMessage', (msgObj) => {
+      const p = document.createElement('p');
+      p.innerHTML = `<strong>${msgObj.username}:</strong> ${msgObj.text}`;
+      chatBox.appendChild(p);
     });
   </script>
 </body>

@@ -21,26 +21,33 @@
   <h2>Response:</h2>
   <pre id="response"></pre>
 
-  <script>
-    document.getElementById('signinForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
-      const responseElem = document.getElementById('response');
+ <script type="module">
+  import { AuthenticationService } from './api/services/AuthenticationService.js';
+  import { OpenAPI } from './api/core/OpenAPI.js';
 
-      try {
-        const res = await fetch('https://backend-mn3f.onrender.com/api/auth/signin', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ username, password })
-        });
+  OpenAPI.BASE = 'https://backend-mn3f.onrender.com';
 
-        const data = await res.json();
-        responseElem.textContent = JSON.stringify(data, null, 2);
-      } catch (err) {
-        responseElem.textContent = 'Error: ' + err;
-      }
-    });
-  </script>
+  const form = document.getElementById('signinForm');
+  const responseElem = document.getElementById('response');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    try {
+      const res = await AuthenticationService.postApiAuthSignin({ username, password });
+      responseElem.textContent = JSON.stringify(res, null, 2);
+
+      // ✅ ذخیره نام کاربر در localStorage
+      localStorage.setItem('username', username);
+
+      // ✅ انتقال به صفحه چت
+      window.location.href = 'chat.html';
+    } catch (err) {
+      responseElem.textContent = 'Error: ' + JSON.stringify(err, null, 2);
+    }
+  });
+</script>
 </body>
 </html>
