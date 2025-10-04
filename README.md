@@ -30,5 +30,3 @@ https://backend-xxxx.onrender.com/auth
 - Render (Static Site)
 
 Make sure the backend API URL is updated in the JavaScript `fetch()` calls.
-
----

@@ -4,10 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+"generate:api": "openapi --input https://backend-mn3f.onrender.com/api-docs/openApi.yaml --output ./src/api --client fetch"
+
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "devDependencies": {
+    "openapi-typescript-codegen": "^0.29.0"
+  }
 }

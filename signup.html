@@ -21,21 +21,21 @@
   <h2>Response:</h2>
   <pre id="response"></pre>
   <script>
+     import { AuthenticationService } from './api/services/AuthenticationService.js';
+    import { OpenAPI } from './api/core/OpenAPI.js';
+
+  
+    OpenAPI.BASE = 'https://backend-mn3f.onrender.com';
     document.getElementById('signupForm').addEventListener('submit', async function(e) {
       e.preventDefault();
       const username = document.getElementById('username').value;
       const password = document.getElementById('password').value;
       const responseElem = document.getElementById('response');
-      try {
-        const res = await fetch("https://backend-mn3f.onrender.com/api/auth/signup", {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ username, password })
-        });
-        const data = await res.json();
-        responseElem.textContent = JSON.stringify(data, null, 2);
+     try {
+        const res = await AuthenticationService.postApiAuthSignup({ username, password });
+        responseElem.textContent = JSON.stringify(res, null, 2);
       } catch (err) {
-        responseElem.textContent = 'Error: ' + err;
+        responseElem.textContent = 'Error: ' + JSON.stringify(err, null, 2);
       }
     });
   </script>
