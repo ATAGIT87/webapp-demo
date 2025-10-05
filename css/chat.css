@@ -1,3 +1,48 @@
+/* -------------------- Chat Layout -------------------- */
+.chat-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 800px;
+  gap: 15px;
+  margin: 0 auto;
+}
+
+.users-panel {
+  width: 30%;
+  min-width: 200px;
+  background: #f0f4ff;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: left;
+  height: 400px;
+  overflow-y: auto;
+}
+
+.users-panel h3 {
+  margin-top: 0;
+  font-size: 16px;
+}
+
+#userList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#userList li {
+  padding: 6px;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+}
+
+/* -------------------- Chat Box -------------------- */
+.chat-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 #chat-box {
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -28,6 +73,28 @@
   align-self: flex-start;
 }
 
+/* -------------------- Buttons & Inputs -------------------- */
+#msg {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin-bottom: 8px;
+}
+
+#sendBtn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+#sendBtn:hover {
+  background-color: #0056b3;
+}
+
+/* -------------------- Logout -------------------- */
 .logout {
   margin-top: 1rem;
   color: #666;
@@ -38,4 +105,21 @@
 
 .logout:hover {
   color: #000;
+}
+
+/* -------------------- Responsive -------------------- */
+@media (max-width: 600px) {
+  .chat-container {
+    flex-direction: column;
+  }
+
+  .users-panel {
+    width: 100%;
+    height: auto;
+    order: 2;
+  }
+
+  .chat-panel {
+    order: 1;
+  }
 }
