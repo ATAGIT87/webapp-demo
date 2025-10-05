@@ -1,34 +1,53 @@
-💬 Realtime Chat Frontend
+# 💬 Realtime Chat Frontend
 
-A simple and elegant Realtime Chat frontend built with HTML, CSS, and Vanilla JavaScript, using Socket.IO for live communication with the backend.
-User accounts are securely stored in AWS DynamoDB, managed by the backend API.
+A clean and elegant **Realtime Chat Frontend** built with **HTML**, **CSS**, and **Vanilla JavaScript**, using **Socket.IO** for live communication with the backend.
 
-🚀 Features
+User accounts are securely stored in **AWS DynamoDB**, managed by the backend API.
 
-✅ Fully responsive (works on desktop & mobile)
-✅ User signup and signin connected to AWS DynamoDB
-✅ Username stored locally using localStorage
-✅ Public realtime chat powered by Socket.IO
-✅ Logout support
-✅ Modern gradient UI with smooth animations
+---
 
-🧩 Project Structure
+## 🚀 Features
+
+✅ Fully responsive (desktop & mobile friendly)  
+✅ User signup & signin connected to AWS DynamoDB  
+✅ Username stored locally using `localStorage`  
+✅ Public realtime chat powered by **Socket.IO**  
+✅ Logout functionality  
+✅ Modern gradient UI with smooth animations  
+
+---
+
+## 🧩 Project Structure
+
 frontend/
 │
-├── signin.html       → User Signin page
-├── signup.html       → User Signup page
-├── chat.html         → Realtime chat page
+├── signin.html → User Signin page
+├── signup.html → User Signup page
+├── chat.html → Realtime Chat page
 │
-└── api/              → (Optional) Generated files from OpenAPI if Swagger is used
-    ├── core/
-    └── services/
+├── css/ → Centralized styles for all pages
+│ ├── signin.css
+│ ├── signup.css
+│ └── chat.css
+│
+└── js/ → Page-specific scripts
+├── signin.js
+├── signup.js
+└── chat.js
 
-⚙️ How to Run
-1️⃣ Run Locally
 
-Simply open signin.html in your browser,
-or start a lightweight local server like http-server or VSCode Live Server:
+> Optionally, if you use Swagger/OpenAPI, generated files can live under `api/core/` and `api/services/`.
 
+---
+
+## ⚙️ How to Run
+
+### 1️⃣ Run Locally
+
+You can simply open `signin.html` in your browser,  
+or start a lightweight local server such as [http-server](https://www.npmjs.com/package/http-server) or VSCode Live Server:
+
+```bash
 npx http-server .
 
 
@@ -39,8 +58,7 @@ Then open:
 
 This frontend connects to the backend hosted at:
 
-https://backend-mn3f.onrender.com
-
+🔗 https://backend-mn3f.onrender.com
 
 All network operations (Signup, Signin, Chat messages) are sent to this backend,
 which interacts with AWS DynamoDB to store and retrieve user data.
@@ -51,12 +69,12 @@ const socket = io("https://backend-mn3f.onrender.com");
 fetch("https://backend-mn3f.onrender.com/api/auth/signin", { ... });
 
 
-If the backend URL changes, simply update it inside your HTML files.
+If the backend URL changes, simply update the BACKEND_BASE variable in your JS files.
 
 🧠 How It Works
 📝 Signup (signup.html)
 
-User enters a username and password.
+User enters a username & password.
 
 A POST request is sent to /api/auth/signup.
 
@@ -68,22 +86,25 @@ User provides credentials.
 
 The backend verifies them against DynamoDB.
 
-If successful, the username is stored in localStorage, and the user is redirected to chat.html.
+On success, username is saved in localStorage and user is redirected to chat.html.
 
 💬 Chat (chat.html)
 
-The app connects to the backend using Socket.IO.
+The client connects to the backend via Socket.IO.
 
-Messages are sent in realtime and broadcast to all connected clients.
+Messages are broadcast in realtime to all connected users.
 
-User’s own messages are styled differently (right-aligned).
+The user's own messages are styled differently (right-aligned).
 
 Clicking Logout clears localStorage and redirects back to the signin page.
 
 📱 Mobile-Friendly Design
 
-The layout is fully responsive using CSS Flexbox and viewport scaling.
-Chat messages and buttons are touch-optimized for mobile users.
+Fully responsive layout using Flexbox and viewport units
+
+Touch-optimized buttons and inputs
+
+Automatically scales for small screens
 
 🧰 Technologies Used
 Tool / Library	Purpose
@@ -91,21 +112,17 @@ Socket.IO	Realtime bidirectional chat
 AWS DynamoDB	Secure user storage
 Fetch API	REST API calls
 LocalStorage	Session management
-HTML/CSS (Vanilla)	Lightweight UI
+HTML / CSS (Vanilla)	Lightweight UI
 http-server / Live Server	Local testing
 🧹 Future Improvements
 
-Private chat rooms
-
-Online user presence tracking
-
-Message persistence (save chat logs to DynamoDB)
-
-Dark/light theme toggle
-
-Chat timestamps and typing indicators
+✨ Private chat rooms
+✨ Online user presence tracking
+✨ Message persistence (save chat logs to DynamoDB)
+✨ Dark / light theme toggle
+✨ Chat timestamps & typing indicators
 
 👨‍💻 Author
 
 Developed by Ali Tabatabaei
-Backend: https://backend-mn3f.onrender.com
+🖥️ Backend: https://backend-mn3f.onrender.com
