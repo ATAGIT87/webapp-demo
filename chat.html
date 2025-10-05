@@ -116,41 +116,6 @@
 
     <p class="logout" id="logoutBtn">🚪 Logout</p>
   </div>
-
-
-  <script>
-    const username = localStorage.getItem('username');
-
-    if (!username) {
-      alert('Please sign in first!');
-      window.location.href = 'signin.html';
-    }
-
-    const socket = io("https://backend-mn3f.onrender.com");
-
-    const chatBox = document.getElementById('chat-box');
-    const msgInput = document.getElementById('msg');
-    const sendBtn = document.getElementById('sendBtn');
-
-  
-    sendBtn.addEventListener('click', () => {
-      const msg = msgInput.value.trim();
-      if (msg) {
-        socket.emit('chatMessage', { username, text: msg });
-        msgInput.value = '';
-      }
-    });
-
-   
-    socket.on('chatMessage', (msgObj) => {
-      const p = document.createElement('p');
-      p.innerHTML = `<strong>${msgObj.username}:</strong> ${msgObj.text}`;
-      chatBox.appendChild(p);
-    });
-     logoutBtn.addEventListener('click', () => {
-      localStorage.removeItem('username');
-      window.location.href = 'signin.html';
-    });
-  </script>
+   <script src="js/chat.js" defer></script>
 </body>
 </html>
