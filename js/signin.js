@@ -1,6 +1,6 @@
 (() => {
   const form = document.getElementById('signinForm');
-
+  const responseElem = document.getElementById('response');
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const username = document.getElementById('username').value.trim();
@@ -15,6 +15,7 @@
 
       const data = await res.json();
       if (res.ok) {
+         responseElem.textContent = JSON.stringify(data, null, 2);
         localStorage.setItem('username', username);
         responseElem.textContent = 'Signin successful';
         window.location.href = 'chat.html';
