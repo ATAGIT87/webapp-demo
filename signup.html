@@ -4,105 +4,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Signup Demo</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0;
-    }
-
-    .container {
-      background: #fff;
-      padding: 2rem 3rem;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-      text-align: center;
-      width: 350px;
-      animation: fadeIn 0.8s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-15px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    h1 {
-      margin-bottom: 1.5rem;
-      color: #333;
-    }
-
-    label {
-      display: block;
-      text-align: left;
-      margin-bottom: 0.5rem;
-      font-weight: bold;
-      color: #444;
-    }
-
-    input {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 1.2rem;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      transition: all 0.2s ease;
-      font-size: 14px;
-    }
-
-    input:focus {
-      outline: none;
-      border-color: #4a90e2;
-      box-shadow: 0 0 5px rgba(74, 144, 226, 0.3);
-    }
-
-    button {
-      background-color: #4a90e2;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 15px;
-      transition: 0.3s;
-      width: 100%;
-    }
-
-    button:hover {
-      background-color: #3b78c2;
-    }
-
-    p {
-      margin-top: 1rem;
-      font-size: 14px;
-      color: #555;
-    }
-
-    a {
-      color: #4a90e2;
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    pre {
-      background: #f8f8f8;
-      padding: 1rem;
-      border-radius: 8px;
-      margin-top: 1rem;
-      font-size: 13px;
-      text-align: left;
-      color: #333;
-      overflow-x: auto;
-    }
-  </style>
+   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/signup.css">
+  <script src="js/signup.js" defer></script>
 </head>
 <body>
   <div class="container">
@@ -122,7 +28,5 @@
 
     <pre id="response"></pre>
   </div>
-
-  <script src="js/signup.js" defer> </script>
 </body>
 </html>
