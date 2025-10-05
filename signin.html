@@ -119,39 +119,8 @@
     <p>Don't have an account? <a href="signup.html">Sign up here</a></p>
 
   </div>
+  
+  <script src="js/signin.js" defer></script>
 
-  <script>
-    const form = document.getElementById('signinForm');
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
-
-      try {
-        const res = await fetch('https://backend-mn3f.onrender.com/api/auth/signin', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ username, password })
-        });
-
-        const data = await res.json();
-
-        if (res.ok) {
-       
-          localStorage.setItem('username', username);
-
-          setTimeout(() => {
-            window.location.href = 'chat.html';
-          }, 1000);
-        } else {
-         
-          responseElem.textContent = `Error ${res.status}: ${data.message || 'Signin failed'}`;
-        }
-      } catch (err) {
-        responseElem.textContent = 'Network error: ' + err;
-      }
-    });
-  </script>
 </body>
 </html>
