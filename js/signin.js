@@ -1,11 +1,11 @@
 (() => {
   const form = document.getElementById('signinForm');
-  const responseElem = document.getElementById('response');
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const username = document.getElementById('username').value.trim();
     const password = document.getElementById('password').value.trim();
-
+  const responseElem = document.getElementById('response');
     try {
       const res = await fetch('https://backend-mn3f.onrender.com/api/auth/signin', {
         method: 'POST',
